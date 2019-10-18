@@ -4,10 +4,10 @@ const User = (props) => {
 
 	return (
 
-		<div onSubmit={props.getUserData}>
+		<form className="form" onSubmit={props.getUserData}>
 			<input type="text" name="username"/>
 			<button>Search</button>
-		</div>
+		</form>
 	)
 }
 

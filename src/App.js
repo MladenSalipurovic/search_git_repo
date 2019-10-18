@@ -3,11 +3,12 @@ import axios from 'axios';
 import './App.css';
 import User from './User'; 
 
+
 class  App extends Component {
 
   state = {
       login: null,
-      bio: null,
+      location: null,
       avatar: null
   }
  
@@ -20,13 +21,13 @@ class  App extends Component {
       console.log(response);
 
       const login = response.data.login;
-      const bio = response.data.bio;
+      const location = response.data.location;
       const avatar = response.data.avatar_url;
 
-      this.setState({login, bio, avatar})
+      this.setState({login, location, avatar})
 
 
-      console.log(login, bio, avatar);
+      console.log(login, location, avatar);
       console.log(this.state)
 
     })
@@ -41,8 +42,7 @@ class  App extends Component {
     return(
       <div>
         <User getUserData={this.getUserData}/>
-        {this.state.login ? <p><img alt="" src={this.state.avatar}/> {this.state.login} Bio: {this.state.bio}</p>  :<p>Enter github username</p>}
-      
+        {this.state.login ? <p className="card"><img alt="" src={this.state.avatar}/> {this.state.login} {this.state.location}</p>  :<p>Enter github username</p>}
       </div>
     )
   }
