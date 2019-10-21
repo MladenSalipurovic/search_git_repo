@@ -1,49 +1,48 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 import './App.css';
-import User from './User'; 
+import Search from './components/Search/Search';
+import Cards from './components/Cards/Cards'; 
 
 
 class  App extends Component {
-
-  state = {
-      login: null,
-      location: null,
-      avatar: null
+  
+  state = { 
+      users: []
   }
- 
-  getUserData = (e) => {
 
+  
+  getData = (e) => {
+    
     e.preventDefault();
-    const user = e.target.elements.username.value;
-    axios.get(`https://api.github.com/users/${user}`)
+    const name = e.target.elements.username.value;
+    axios.get(`https://api.github.com/users/${name}`)
     .then((response) => {
       console.log(response);
 
-      const login = response.data.login;
-      const location = response.data.location;
-      const avatar = response.data.avatar_url;
+      const users = response.data;
 
-      this.setState({login, location, avatar})
+      this.setState(prevState =>({
+        users: [...prevState.users, response.data]
+      })
+      )
 
-
-      console.log(login, location, avatar);
-      console.log(this.state)
-
+      console.log(users);
+      console.log(this.state);
+      console.log(this.state.users)
     })
-
-    console.log(user);
-       
-
-}
-
+  }
+  
   render() {
   
     return(
-      <div>
-        <User getUserData={this.getUserData}/>
-        {this.state.login ? <p className="card"><img alt="" src={this.state.avatar}/> {this.state.login} {this.state.location}</p>  :<p>Enter github username</p>}
-      </div>
+      <Fragment>
+        <div>
+          <Search getData={this.getData}/>
+          <Cards showCards={this.state.users}/>
+          
+        </div>
+      </Fragment>
     )
   }
 }

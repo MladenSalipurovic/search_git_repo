@@ -10,3 +10,25 @@ img {
 form.form {
 	padding: 20px 20px;
 }
+
+span.text {
+    display: grid;
+}
+p.card {
+    /* border-radius: 20px; */
+    display: inline-flex;
+    border: solid 1px;
+    margin-left: 20px;
+}
+
+span.username {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+span.location {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
