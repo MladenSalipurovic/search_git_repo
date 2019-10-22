@@ -1,46 +1,51 @@
 import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 import './App.css';
-import Search from './components/Search/Search';
+import Repos from './components/Repos/Repos';
 import Cards from './components/Cards/Cards'; 
 
 
 class  App extends Component {
   
   state = { 
-      users: []
+      users: [],
+      repos: [],
+      filter: ""
+  }
+
+  updateFilter = (e) => {
+    this.setState({filter: e.target.value})
   }
 
   
-  getData = (e) => {
+    async componentDidMount() {
+  
+      const response = await axios.get(`https://api.github.com/users`)
+      
+      this.setState({users: response.data})
     
-    e.preventDefault();
-    const name = e.target.elements.username.value;
-    axios.get(`https://api.github.com/users/${name}`)
-    .then((response) => {
-      console.log(response);
+    }
 
-      const users = response.data;
+  clickHandler = async (e) => {
 
-      this.setState(prevState =>({
-        users: [...prevState.users, response.data]
-      })
-      )
+    const response = await axios.get(`https://api.github.com/users/${e.target.id}/repos`)
+    this.setState({repos: response.data})
+  } 
 
-      console.log(users);
-      console.log(this.state);
-      console.log(this.state.users)
-    })
-  }
-  
+
   render() {
   
     return(
       <Fragment>
-        <div>
-          <Search getData={this.getData}/>
-          <Cards showCards={this.state.users}/>
-          
+        <input type="search" 
+        placeholder="Search Github user" 
+        className="input-field" 
+        onChange={this.updateFilter}/>
+        <div className="container">
+            <Cards users={this.state.users} 
+            clickHandler={this.clickHandler}
+            filter={this.state.filter}/>
+            <Repos repos={this.state.repos}/> 
         </div>
       </Fragment>
     )

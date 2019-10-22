@@ -1,0 +1,25 @@
+.repo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    border: 1px solid black;
+}
+.repo-container {
+    width: 60%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: ;
+}
+a.repo-link {
+    border: 1px solid #27af61;
+    color: #27af61;
+    margin-bottom: 16px;
+    width: 80%;
+    text-align: center;
+    background-color: #f1f1f1;
+    text-decoration: none;
+    padding: 5px;
+    font-weight: 700;
+}   

@@ -1,22 +1,3 @@
-.App {
-  text-align: center;
-}
-
-
-img {
-  width: 100px;
-}
-input.input-field {
-    width: 450px;
-    padding: 5px 5px;
-    margin: 30px 30px;
-}
-.container {
-    display: flex;
-    align-items: self-start;
-    justify-content: space-between;
-}
-
 .card-container {
     width: 450px;
 
@@ -33,4 +14,17 @@ input.input-field {
 }
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.name {
+    text-align: center;
+}
+.button {
+	width: 200px;
+    border: 1px solid #27af61;
+    color: #27af61;    
+    text-align: center;
+    background-color: #f1f1f1;
+    text-decoration: none;
+    padding: 5px;
+    font-weight: 700;
 }
